@@ -1,6 +1,11 @@
-#!/bin/bash
-
-prog_name=$1
-
-g++ "${prog_name}.cpp" -o $prog_name -std=c++17 -g -Wall -Wshadow -fsanitize=address,undefined &&
-   "./$prog_name"
+filename=$1;
+isDebug=$2;
+compile_command="-std=c++17 -O2 -Wall -lm ${filename}.cpp -o ./output/${filename}.out"
+if [ -n "${isDebug}" ]; then
+  compile_command="-std=c++17 -DDEBUG -O2 -Wall -lm ${filename}.cpp -o ./output/${filename}.out"
+fi
+if g++ ${compile_command}; then
+  ./output/"${filename}.out" < ./input.txt
+else
+  echo "Compilation failed"
+fi

@@ -1,6 +1,7 @@
 LATEXCMD = pdflatex -shell-escape -output-directory build/
 export TEXINPUTS=.:content/tex/:
 export max_print_line = 1048576
+export CXX = g++-12
 
 help:
 	@echo "This makefile builds KACTL (KTH Algorithm Competition Template Library)"
